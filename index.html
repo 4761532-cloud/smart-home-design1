@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Smart Home Appliance Control</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+body {
+    font-family: 'Inter', sans-serif;
+    background:#0a0a0a;
+    color:white;
+}
+
+/* HERO BACKGROUND */
+.hero {
+    background:
+    linear-gradient(rgba(0,0,0,.75), rgba(0,0,0,.85)),
+    url("https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1600&q=80");
+    background-size:cover;
+    background-position:center;
+}
+
+/* SECTION BACKGROUND */
+.appliance-bg {
+    background:
+    linear-gradient(rgba(10,10,10,.9), rgba(10,10,10,.9)),
+    url("https://images.unsplash.com/photo-1558002038-1055907df827?auto=format&fit=crop&w=1600&q=80");
+    background-size:cover;
+    background-attachment:fixed;
+}
+
+/* GLASS CARD */
+.glass {
+    background: rgba(255,255,255,.08);
+    backdrop-filter: blur(14px);
+    border:1px solid rgba(255,255,255,.15);
+    transition:.3s;
+}
+.glass:hover {
+    border-color:#3b82f6;
+    transform:translateY(-6px) scale(1.02);
+}
+</style>
+</head>
+
+<body>
+
+<!-- Navbar -->
+<nav class="flex justify-between items-center p-6 bg-black/70 backdrop-blur sticky top-0 z-50">
+    <h1 class="text-2xl font-bold text-blue-500">SMART HOME</h1>
+    <span class="text-gray-400">Appliance Control System</span>
+</nav>
+
+<!-- Hero Section -->
+<header class="hero h-[75vh] flex flex-col justify-center items-center text-center px-4">
+    <h1 class="text-5xl md:text-6xl font-bold mb-6">
+        Control Your Smart Home
+    </h1>
+    <p class="text-gray-300 max-w-xl mb-8 text-lg">
+        Manage lights, fans, AC, TV and door lock from anywhere in the world.
+    </p>
+    <button class="bg-blue-600 hover:bg-blue-700 px-8 py-3 rounded font-bold transition">
+        Open Dashboard
+    </button>
+</header>
+
+<!-- Appliance Section -->
+<section class="appliance-bg py-24">
+<div class="max-w-6xl mx-auto px-6">
+<h2 class="text-3xl font-bold mb-14 text-center">Smart Appliances</h2>
+
+<div class="grid md:grid-cols-3 gap-10">
+
+<!-- Light -->
+<div class="glass p-8 rounded-xl text-center">
+    <h3 class="text-xl font-bold mb-3">💡 Smart Light</h3>
+    <p id="lightStatus" class="text-gray-300 mb-4">Status: OFF</p>
+    <button onclick="toggle('light')" class="bg-blue-600 px-6 py-2 rounded">Toggle</button>
+</div>
+
+<!-- Fan -->
+<div class="glass p-8 rounded-xl text-center">
+    <h3 class="text-xl font-bold mb-3">🌀 Smart Fan</h3>
+    <p id="fanStatus" class="text-gray-300 mb-4">Status: OFF</p>
+    <button onclick="toggle('fan')" class="bg-blue-600 px-6 py-2 rounded">Toggle</button>
+</div>
+
+<!-- AC -->
+<div class="glass p-8 rounded-xl text-center">
+    <h3 class="text-xl font-bold mb-3">❄ Smart AC</h3>
+    <p id="acStatus" class="text-gray-300 mb-4">Status: OFF</p>
+    <button onclick="toggle('ac')" class="bg-blue-600 px-6 py-2 rounded">Toggle</button>
+</div>
+
+<!-- TV -->
+<div class="glass p-8 rounded-xl text-center">
+    <h3 class="text-xl font-bold mb-3">📺 Smart TV</h3>
+    <p id="tvStatus" class="text-gray-300 mb-4">Status: OFF</p>
+    <button onclick="toggle('tv')" class="bg-blue-600 px-6 py-2 rounded">Toggle</button>
+</div>
+
+<!-- Door -->
+<div class="glass p-8 rounded-xl text-center">
+    <h3 class="text-xl font-bold mb-3">🔒 Door Lock</h3>
+    <p id="doorStatus" class="text-gray-300 mb-4">Status: Locked</p>
+    <button onclick="toggle('door')" class="bg-blue-600 px-6 py-2 rounded">Toggle</button>
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- Footer -->
+<footer class="border-t border-gray-800 py-8 text-center text-gray-500">
+Smart Home Automation Project © 2026
+</footer>
+
+<script>
+let state = {
+ light:false, fan:false, ac:false, tv:false, door:true
+}
+
+function toggle(device){
+ state[device] = !state[device];
+
+ if(device=="door"){
+   document.getElementById("doorStatus").innerText =
+   state.door ? "Status: Locked" : "Status: Unlocked";
+ } else {
+   document.getElementById(device+"Status").innerText =
+   "Status: " + (state[device] ? "ON" : "OFF");
+ }
+}
+</script>
+
+</body>
+</html>
